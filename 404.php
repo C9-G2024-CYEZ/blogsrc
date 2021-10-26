@@ -1,145 +1,31 @@
+<!DOCTYPE html>
 <html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-	<link href="<?php bloginfo('template_url'); ?>/assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
-	<link href="<?php bloginfo('template_url'); ?>/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	<link type="text/css" href="<?php bloginfo('template_url'); ?>/assets/css/argon.min.css" rel="stylesheet">
-	<script src="<?php bloginfo('template_url'); ?>/assets/vendor/jquery/jquery.min.js"></script>
-	<script src="<?php bloginfo('template_url'); ?>/assets/vendor/bootstrap/bootstrap.min.js"></script>
-	<script src="<?php bloginfo('template_url'); ?>/assets/js/argon.min.js"></script>
-	<title><?php _e("404 - 找不到页面", "argon"); ?></title>
-	<script>
-		var darkmodeAutoSwitch = "<?php echo (get_option("argon_darkmode_autoswitch") == '' ? 'false' : get_option("argon_darkmode_autoswitch"));?>";
-		function setDarkmode(enable){
-			if (enable == true){
-				$("html").addClass("darkmode");
-			}else{
-				$("html").removeClass("darkmode");
-			}
-			$(window).trigger("scroll");
-		}
-		function toggleDarkmode(){
-			if ($("html").hasClass("darkmode")){
-				setDarkmode(false);
-				sessionStorage.setItem("Argon_Enable_Dark_Mode", "false");
-			}else{
-				setDarkmode(true);
-				sessionStorage.setItem("Argon_Enable_Dark_Mode", "true");
-			}
-		}
-		if (sessionStorage.getItem("Argon_Enable_Dark_Mode") == "true"){
-			setDarkmode(true);
-		}
-		function toggleDarkmodeByPrefersColorScheme(media){
-			if (sessionStorage.getItem('Argon_Enable_Dark_Mode') == "false" || sessionStorage.getItem('Argon_Enable_Dark_Mode') == "true"){
-				return;
-			}
-			if (media.matches){
-				setDarkmode(true);
-			}else{
-				setDarkmode(false);
-			}
-		}
-		function toggleDarkmodeByTime(){
-			if (sessionStorage.getItem('Argon_Enable_Dark_Mode') == "false" || sessionStorage.getItem('Argon_Enable_Dark_Mode') == "true"){
-				return;
-			}
-			let hour = new Date().getHours();
-			if (hour < 7 || hour >= 22){
-				setDarkmode(true);
-			}else{
-				setDarkmode(false);
-			}
-		}
-		if (darkmodeAutoSwitch == 'system'){
-			var darkmodeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-			darkmodeMediaQuery.addListener(toggleDarkmodeByPrefersColorScheme);
-			toggleDarkmodeByPrefersColorScheme(darkmodeMediaQuery);
-		}
-		if (darkmodeAutoSwitch == 'time'){
-			toggleDarkmodeByTime();
-		}
-		if (darkmodeAutoSwitch == 'alwayson'){
-			setDarkmode(true);
-		}
-
-		function toggleAmoledDarkMode(){
-			$("html").toggleClass("amoled-dark");
-			if ($("html").hasClass("amoled-dark")){
-				localStorage.setItem("Argon_Enable_Amoled_Dark_Mode", "true");
-			}else{
-				localStorage.setItem("Argon_Enable_Amoled_Dark_Mode", "false");
-			}
-		}
-		if (localStorage.getItem("Argon_Enable_Amoled_Dark_Mode") == "true"){
-			$("html").addClass("amoled-dark");
-		}else if (localStorage.getItem("Argon_Enable_Amoled_Dark_Mode") == "false"){
-			$("html").removeClass("amoled-dark");
-		}
-	</script>
-</head>
-<body>
-	<div class="position-relative">
-		<section class="section section-lg section-shaped pb-250" style="height: 100vh !important;">
-			<div class="shape shape-style-1 shape-default">
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
-			<div class="container py-lg-md d-flex">
-				<div class="col px-0">
-					<div class="row">
-						<div class="col-lg-6 col-sm-12">
-							<div class="display-1 text-white">404</div>
-							<p class="lead text-white">Page not found.<br><?php _e("这个页面不见了", "argon"); ?></p>
-							<div class="btn-wrapper">
-								<a href="javascript:window.history.back(-1);" ondragstart="return false;" class="btn btn-info btn-icon mb-3 mb-sm-0">
-									<span class="btn-inner--icon"><i class="fa fa-chevron-left"></i></span>
-									<span class="btn-inner--text"><?php _e("返回上一页", "argon"); ?></span>
-								</a>
-								<a href="<?php bloginfo('url'); ?>" class="btn btn-white btn-icon mb-3 mb-sm-0">
-									<span class="btn-inner--icon"><i class="fa fa-home"></i></span>
-									<span class="btn-inner--text"><?php _e("回到首页", "argon"); ?></span>
-								</a>
-							</div>
-							<?php echo apply_filters('argon_404page_extra_html', ''); ?>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	</div>
-</body>
+    <head>
+        <meta name="author" content="journey.ad">
+        <meta name="copyright" content="journey.ad">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="Robots" content="NOINDEX, NOFOLLOW, NOARCHIVE">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="theme-color" content="#f33">
+        <title>404 Not Found</title>
+        <style>
+            body{margin:0;padding:0;color:#444;margin:0;font:normal 14px/20px Helvetica,Arial,PingFang SC,Microsoft YaHei,WenQuanYi Micro Hei,tohoma,sans-serif;background-color:#f9f9f9;user-select:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;cursor:default;position:absolute;width:100%;height:80%;top:20%;overflow:hidden;}.center{height:100%;}h1{margin:0;font-size:150px;line-height:150px;font-weight:normal;}h2{margin-top:20px;font-size:30px;}.footer{color:#f0f0f0;font-size:12px;padding:0px 20px 0px 20px;height:90px;width:calc(100% - 40px);margin-top:-90px;background-color:#474747;}.footer a{color:#f0f0f0;text-decoration:none;}.text{text-align:center;}#hitokoto{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+        </style>
+    </head>
+    <body>
+        <div class="center">
+            <div class="text">
+                <h1>404</h1>
+                <h2>Not Found</h2>
+                <p><?php _e('欸？我的萝莉怎么不见了？！','moedog'); ?></p>
+            </div>
+        </div>
+        <div class="footer">
+            <br> © <script>document.write(new Date().getFullYear())</script> <a href="https://prprpr.love" target="_blank">MOEDOG</a>
+            <div class="hitokoto"></div>
+            <script src="https://v1.hitokoto.cn/?encode=js"></script>
+            <p id="hitokoto"><script>hitokoto()</script></p>
+        </div>
+    </body>
 </html>
-
-<style>
-	body{
-		overflow: hidden;
-	}
-	html.darkmode .section-shaped .shape {
-		background: #262626;
-	}
-	html.darkmode .text-white {
-		opacity: .75;
-	}
-	html.darkmode .btn-white {
-		background: #424242;
-		border-color: #424242;
-		color: #eee;
-	}
-	html.darkmode .btn-info {
-		background: #0a7f94;
-		border-color: #0a7f94;
-		color: #eee;
-	}
-	html.darkmode.amoled-dark .section-shaped .shape {
-		background: #000;
-	}
-</style>
